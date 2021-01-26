@@ -157,7 +157,7 @@ exports.data = async (req, res) => {
     // from block to end block, paging "toAddress":[addr],
     // start from creation block to speed things up
     // TODO: store creation block
-    const filter = { 'fromBlock': '0x1d4c00', 'toAddress': [addr] };
+    const filter = { 'fromBlock': '0x1', 'toAddress': [addr] };
     web3.trace.filter(filter, (err, tx) => {
       if (err || !tx) {
         console.error(`TraceWeb3 error :${err}`);
