@@ -9,8 +9,8 @@ const RLP = require('rlp');
 */
 function filterTX(txs, value) {
   return txs.map(tx => {
-    if(tx.data) return [tx.hash, tx.blockNumber, tx.from, tx.to, etherUnits.toEther(new BigNumber(tx.value), 'ether'), tx.gas, tx.timestamp, tx.creates, Number(`0x${tx.data.substring(74)}`)]
-    else return [tx.hash, tx.blockNumber, tx.from, tx.to, etherUnits.toEther(new BigNumber(tx.value), 'ether'), tx.gas, tx.timestamp, tx.creates, 0]
+    if(tx.input) return [tx.hash, tx.blockNumber, tx.from, tx.to, etherUnits.toEther(new BigNumber(tx.value), 'ether'), tx.gas, tx.timestamp, tx.creates, Number(`0x${tx.input.substring(74)}`)]
+    else return [tx.hash, tx.blockNumber, tx.from, tx.to, etherUnits.toEther(new BigNumber(tx.value), 'ether'), tx.gas, tx.timestamp, tx.creates, -1]
   });
 }
 
