@@ -186,7 +186,7 @@ exports.data = async (req, res) => {
         }, {
           'constant': true, 'inputs': [], 'name': 'symbol', 'outputs': [{ 'name': '', 'type': 'string' }], 'payable': false, 'type': 'function',
         }];
-        const Token = new eth.Contract(ABI, "0x41b6f68950dae15242c3b35bcc9ad6446fcf0849");
+        const Token = new web3.eth.Contract(ABI, "0x41b6f68950dae15242c3b35bcc9ad6446fcf0849");
         const tokens = await Token.methods.balanceOf(addr).call();
         addrData['balance'] = etherUnits.toEther(tokens, 'wei');
       } catch (err) {
