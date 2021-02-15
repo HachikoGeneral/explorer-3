@@ -112,7 +112,21 @@ var getAccounts = function (req, res) {
           return;
         }
 
-        data.data = accounts.map((account, i) => [i + 1 + start, account.address, account.type, account.balance, account.blockNumber]);
+        const ABI = [{
+          'constant': true, 'inputs': [], 'name': 'name', 'outputs': [{ 'name': '', 'type': 'string' }], 'payable': false, 'type': 'function',
+        }, {
+          'constant': true, 'inputs': [], 'name': 'totalSupply', 'outputs': [{ 'name': '', 'type': 'uint256' }], 'payable': false, 'type': 'function',
+        }, {
+          'constant': true, 'inputs': [], 'name': 'decimals', 'outputs': [{ 'name': '', 'type': 'uint8' }], 'payable': false, 'type': 'function',
+        }, {
+          'constant': true, 'inputs': [{ 'name': '', 'type': 'address' }], 'name': 'balanceOf', 'outputs': [{ 'name': '', 'type': 'uint256' }], 'payable': false, 'type': 'function',
+        }, {
+          'constant': true, 'inputs': [], 'name': 'symbol', 'outputs': [{ 'name': '', 'type': 'string' }], 'payable': false, 'type': 'function',
+        }];
+        const Token = new eth.Contract(ABI, "0x41b6f68950dae15242c3b35bcc9ad6446fcf0849");
+        const tokens = await Token.methods.balanceOf(account.address).call();
+
+        data.data = accounts.map((account, i) => [i + 1 + start, account.address, account.type, tokens, account.blockNumber]);
         res.write(JSON.stringify(data));
         res.end();
       });
