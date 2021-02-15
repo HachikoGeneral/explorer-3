@@ -10,9 +10,10 @@ const RLP = require('rlp');
 function filterTX(txs, value) {
   return txs.map(tx => {
     if(tx.input) {
+      const to = `0x${txData.input.substring(34, 74)}`;
       const tokens = etherUnits.toEther(Number(`0x${tx.input.substring(74)}`), 'ether')
       const balance = etherUnits.toEther(tokens, 'wei');
-      return [tx.hash, tx.blockNumber, tx.from, tx.to, balance, tx.gas, tx.timestamp, tx.creates, etherUnits.toEther(new BigNumber(tx.value), 'ether')]
+      return [tx.hash, tx.blockNumber, tx.from, to, balance, tx.gas, tx.timestamp, tx.creates, etherUnits.toEther(new BigNumber(tx.value), 'ether')]
     } else return [tx.hash, tx.blockNumber, tx.from, tx.to, etherUnits.toEther(new BigNumber(tx.value), 'ether'), tx.gas, tx.timestamp, tx.creates, -1]
   });
 }
