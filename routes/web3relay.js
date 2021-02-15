@@ -122,10 +122,9 @@ exports.data = async (req, res) => {
           }
         });
       } else {
-        doc.value = etherUnits.toEther(new BigNumber(tx.value), 'wei');
         if(doc.input) {
-          doc.tokenTo = `0x${tx.input.substring(34, 74)}`;
-          const tokens = etherUnits.toEther(Number(`0x${tx.input.substring(74)}`), 'ether')
+          doc.tokenTo = `0x${doc.input.substring(34, 74)}`;
+          const tokens = etherUnits.toEther(Number(`0x${doc.input.substring(74)}`), 'ether')
           if(tokens) {
             doc.tokenValue = etherUnits.toEther(tokens, 'wei');
           }
