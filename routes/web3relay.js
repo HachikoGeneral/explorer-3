@@ -175,8 +175,20 @@ exports.data = async (req, res) => {
 
     if (options.indexOf('balance') > -1) {
       try {
-        addrData['balance'] = await web3.eth.getBalance(addr);
-        addrData['balance'] = etherUnits.toEther(addrData['balance'], 'wei');
+        const ABI = [{
+          'constant': true, 'inputs': [], 'name': 'name', 'outputs': [{ 'name': '', 'type': 'string' }], 'payable': false, 'type': 'function',
+        }, {
+          'constant': true, 'inputs': [], 'name': 'totalSupply', 'outputs': [{ 'name': '', 'type': 'uint256' }], 'payable': false, 'type': 'function',
+        }, {
+          'constant': true, 'inputs': [], 'name': 'decimals', 'outputs': [{ 'name': '', 'type': 'uint8' }], 'payable': false, 'type': 'function',
+        }, {
+          'constant': true, 'inputs': [{ 'name': '', 'type': 'address' }], 'name': 'balanceOf', 'outputs': [{ 'name': '', 'type': 'uint256' }], 'payable': false, 'type': 'function',
+        }, {
+          'constant': true, 'inputs': [], 'name': 'symbol', 'outputs': [{ 'name': '', 'type': 'string' }], 'payable': false, 'type': 'function',
+        }];
+        const Token = new eth.Contract(ABI, "0x41b6f68950dae15242c3b35bcc9ad6446fcf0849");
+        const tokens = await Token.methods.balanceOf(addr).call();
+        addrData['balance'] = etherUnits.toEther(tokens, 'wei');
       } catch (err) {
         console.error(`AddrWeb3 error :${err}`);
         addrData = { 'error': true };
