@@ -105,7 +105,7 @@ var getAccounts = function (req, res) {
 
     Account.find({}).lean(true).sort(sortOrder).skip(start)
       .limit(limit)
-      .exec((err, accounts) => {
+      .exec(async (err, accounts) => {
         if (err) {
           res.write(JSON.stringify({ 'error': true }));
           res.end();
