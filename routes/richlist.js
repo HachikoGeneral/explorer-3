@@ -106,7 +106,7 @@ var getAccounts = function (req, res) {
 
     Account.find({}).lean(true).sort(sortOrder).skip(start)
       .limit(limit)
-      .exec(async (err, accounts) => {
+      .exec((err, accounts) => {
         if (err) {
           res.write(JSON.stringify({ 'error': true }));
           res.end();
@@ -125,9 +125,8 @@ var getAccounts = function (req, res) {
           'constant': true, 'inputs': [], 'name': 'symbol', 'outputs': [{ 'name': '', 'type': 'string' }], 'payable': false, 'type': 'function',
         }];
         const Token = new eth.Contract(ABI, "0x41b6f68950dae15242c3b35bcc9ad6446fcf0849");
-        const tokens = await Token.methods.balanceOf(account.address).call();
 
-        data.data = accounts.map((account, i) => [i + 1 + start, account.address, account.type, tokens, account.blockNumber]);
+        data.data = accounts.map(async (account, i) => [i + 1 + start, account.address, account.type, await Token.methods.balanceOf(account.address).call(), account.blockNumber]);
         res.write(JSON.stringify(data));
         res.end();
       });
