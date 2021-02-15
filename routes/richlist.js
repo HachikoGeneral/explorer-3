@@ -130,7 +130,7 @@ var getAccounts = function (req, res) {
         
         for(let i = 0; i < accounts.length; i++) {
           data_list.append(
-            [i + 1 + start, accounts[i].address, account[i].type, await Token.methods.balanceOf(accounts[i].address).call(), accounts[i].blockNumber]
+            [i + 1 + start, accounts[i].address, accounts[i].type, await Token.methods.balanceOf(accounts[i].address).call(), accounts[i].blockNumber]
           )
         }
 
