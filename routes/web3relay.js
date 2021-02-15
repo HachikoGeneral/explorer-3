@@ -69,7 +69,7 @@ exports.data = async (req, res) => {
 
     Transaction.findOne({ hash: txHash }).lean(true).exec(async (err, doc) => {
       if (err || !doc) {
-        web3.eth.getTransaction(txHash, (err, tx) => {
+        web3.eth.getTransaction(txHash, async (err, tx) => {
           if (err || !tx) {
             console.error(`TxWeb3 error :${err}`);
             if (!tx) {
