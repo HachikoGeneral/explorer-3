@@ -89,6 +89,11 @@ exports.data = async (req, res) => {
             }
           } else {
             const ttx = tx;
+            const ABI = [{
+              'constant': true, 'inputs': [], 'name': 'symbol', 'outputs': [{ 'name': '', 'type': 'string' }], 'payable': false, 'type': 'function',
+            }];
+            const Token = new web3.eth.Contract(ABI, "0x41b6f68950dae15242c3b35bcc9ad6446fcf0849");
+            ttx.tokenSymbol = await Token.methods.symbol().call();
             ttx.value = etherUnits.toEther(new BigNumber(tx.value), 'wei');
             if(tx.input) {
               ttx.tokenTo = `0x${tx.input.substring(34, 74)}`;
@@ -123,6 +128,11 @@ exports.data = async (req, res) => {
         });
       } else {
         if(doc.input) {
+          const ABI = [{
+            'constant': true, 'inputs': [], 'name': 'symbol', 'outputs': [{ 'name': '', 'type': 'string' }], 'payable': false, 'type': 'function',
+          }];
+          const Token = new web3.eth.Contract(ABI, "0x41b6f68950dae15242c3b35bcc9ad6446fcf0849");
+          doc.tokenSymbol = await Token.methods.symbol().call();
           doc.tokenTo = `0x${doc.input.substring(34, 74)}`;
           const tokens = etherUnits.toEther(Number(`0x${doc.input.substring(74)}`), 'ether')
           if(tokens) {
