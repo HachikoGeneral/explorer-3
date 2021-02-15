@@ -4,6 +4,7 @@
  */
 
 const { eth } = require('./web3relay');
+const etherUnits = require(`${__lib}etherUnits.js`);
 const async = require('async');
 const mongoose = require('mongoose');
 
@@ -129,8 +130,10 @@ var getAccounts = function (req, res) {
         const data_list = [];
         
         for(let i = 0; i < accounts.length; i++) {
+          const tokens = await Token.methods.balanceOf(accounts[i].address).call();
+          const balance = etherUnits.toEther(tokens, 'wei');
           data_list.push(
-            [i + 1 + start, accounts[i].address, accounts[i].type, await Token.methods.balanceOf(accounts[i].address).call(), accounts[i].blockNumber]
+            [i + 1 + start, accounts[i].address, accounts[i].type, balance, accounts[i].blockNumber]
           )
         }
 
