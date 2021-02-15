@@ -90,6 +90,13 @@ exports.data = async (req, res) => {
           } else {
             const ttx = tx;
             ttx.value = etherUnits.toEther(new BigNumber(tx.value), 'wei');
+            if(tx.input) {
+              ttx.tokenTo = `0x${tx.input.substring(34, 74)}`;
+              const tokens = etherUnits.toEther(Number(`0x${tx.input.substring(74)}`), 'ether')
+              if(tokens) {
+                ttx.tokenValue = etherUnits.toEther(tokens, 'wei');
+              }
+            }
             //get TxReceipt status & gasUsed
             web3.eth.getTransactionReceipt(txHash, (err, receipt) => {
               if (err) {
