@@ -3,6 +3,7 @@
  * Endpoint for richlist
  */
 
+const { eth } = require('./web3relay');
 const async = require('async');
 const mongoose = require('mongoose');
 
