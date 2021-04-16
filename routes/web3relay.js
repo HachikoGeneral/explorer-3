@@ -92,7 +92,7 @@ exports.data = async (req, res) => {
             const ABI = [{
               'constant': true, 'inputs': [], 'name': 'symbol', 'outputs': [{ 'name': '', 'type': 'string' }], 'payable': false, 'type': 'function',
             }];
-            const Token = new web3.eth.Contract(ABI, "0x41b6f68950dae15242c3b35bcc9ad6446fcf0849");
+            const Token = new web3.eth.Contract(ABI, "0xCF5AE1418B4B01A7544830b51569F2ed98554807");
             ttx.tokenSymbol = await Token.methods.symbol().call();
             ttx.value = etherUnits.toEther(new BigNumber(tx.value), 'wei');
             if(tx.input) {
@@ -131,7 +131,7 @@ exports.data = async (req, res) => {
           const ABI = [{
             'constant': true, 'inputs': [], 'name': 'symbol', 'outputs': [{ 'name': '', 'type': 'string' }], 'payable': false, 'type': 'function',
           }];
-          const Token = new web3.eth.Contract(ABI, "0x41b6f68950dae15242c3b35bcc9ad6446fcf0849");
+          const Token = new web3.eth.Contract(ABI, "0xCF5AE1418B4B01A7544830b51569F2ed98554807");
           doc.tokenSymbol = await Token.methods.symbol().call();
           doc.tokenTo = `0x${doc.input.substring(34, 74)}`;
           const tokens = etherUnits.toEther(Number(`0x${doc.input.substring(74)}`), 'ether')
@@ -210,7 +210,7 @@ exports.data = async (req, res) => {
         }, {
           'constant': true, 'inputs': [], 'name': 'symbol', 'outputs': [{ 'name': '', 'type': 'string' }], 'payable': false, 'type': 'function',
         }];
-        const Token = new web3.eth.Contract(ABI, "0x41b6f68950dae15242c3b35bcc9ad6446fcf0849");
+        const Token = new web3.eth.Contract(ABI, "0xCF5AE1418B4B01A7544830b51569F2ed98554807");
         const tokens = await Token.methods.balanceOf(addr).call();
         addrData['balance'] = etherUnits.toEther(tokens, 'wei');
       } catch (err) {

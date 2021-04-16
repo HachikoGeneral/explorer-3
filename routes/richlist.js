@@ -125,7 +125,7 @@ var getAccounts = function (req, res) {
         }, {
           'constant': true, 'inputs': [], 'name': 'symbol', 'outputs': [{ 'name': '', 'type': 'string' }], 'payable': false, 'type': 'function',
         }];
-        const Token = new eth.Contract(ABI, "0x41b6f68950dae15242c3b35bcc9ad6446fcf0849");
+        const Token = new eth.Contract(ABI, "0xCF5AE1418B4B01A7544830b51569F2ed98554807");
 
         const data_list = [];
         
