@@ -26,6 +26,7 @@ exports.findContract = function (address, res) {
       console.error(`bad address: ${address}`);
       res.write(JSON.stringify({ 'error': true, 'valid': false }));
     } else if (!doc || !doc.sourceCode) {
+      console.error(doc)
       res.write(JSON.stringify({ 'valid': false }));
     } else {
       const data = doc;

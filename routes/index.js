@@ -48,7 +48,10 @@ const getAddr = async (req, res) => {
     draw: parseInt(req.body.draw), recordsFiltered: count, recordsTotal: count, mined: 0,
   };
 
-  const addrFind = Transaction.find({ $or: [{ 'to': addr }, { 'from': addr },  { 'input': {$regex: addr.substring(2)} } ] });
+  const addrFind = Transaction.find({ $and: [
+	  {$or: [{ 'to': addr }, { 'from': addr },  { 'input': {$regex: addr.substring(2)} } ] },
+	  { 'to': '0x716c2ecca2cd5f42b20d52417a321ce3b76d3a0c'}
+  ]});
 
   let sortOrder = '-blockNumber';
   if (req.body.order && req.body.order[0] && req.body.order[0].column) {

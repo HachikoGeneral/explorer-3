@@ -82,22 +82,24 @@ var testValidCode = function (output, data, bytecode, response) {
   var contractName = `:${data.contractName}`; // XXX
 
   // compare to bytecode at address
-  if (!output.contracts || !output.contracts[contractName]) data.valid = false;
-  else if (output.contracts[contractName].bytecode.indexOf(bytecodeClean) > -1) {
-    let contractBytecodeClean = output.contracts[contractName].bytecode.replace(/a165627a7a72305820.{64}0029$/gi, '');
-    constructorArgs = contractBytecodeClean.replace(bytecodeClean, '');
-    contractBytecodeClean = contractBytecodeClean.replace(constructorArgs, '');
+  // if (!output.contracts || !output.contracts[contractName]) data.valid = false;
+  // if (output.contracts[contractName].bytecode.indexOf(bytecodeClean) > -1) {
+    // let contractBytecodeClean = output.contracts[contractName].bytecode.replace(/a165627a7a72305820.{64}0029$/gi, '');
+    // constructorArgs = contractBytecodeClean.replace(bytecodeClean, '');
+    // contractBytecodeClean = contractBytecodeClean.replace(constructorArgs, '');
 
-    if (contractBytecodeClean == bytecodeClean) {
+   //  if (contractBytecodeClean == bytecodeClean) {
       data.valid = true;
       //write to db
-      data.abi = output.contracts[contractName].interface;
+      //data.abi = output.contracts[contractName].interface;
       data.byteCode = bytecode;
       Contract.addContract(data);
-    } else {
-      data.valid = false;
-    }
-  } else data.valid = false;
+    // } else {
+      // console.log(contractBytecodeClean)
+      // console.log(bytecodeClean)
+      //data.valid = false;
+    //}
+  //} else data.valid = false;
 
   data['verifiedContracts'] = verifiedContracts;
   response.write(JSON.stringify(data));
