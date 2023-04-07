@@ -1,7 +1,7 @@
 {
     "nodeAddr":     "70.34.216.42",
     "gethPort":     9933, 
-    "output": "http://70.34.216.42:9933",
+    "output": "ws://70.34.216.42:9933",
     "startBlock":   0,
     "endBlock":     "latest",
     "quiet":        true,
