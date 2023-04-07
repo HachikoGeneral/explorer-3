@@ -1,0 +1,17 @@
+{
+    "nodeAddr":     "70.34.216.42",
+    "gethPort":     9933, 
+    "output": "http://70.34.216.42:9933",
+    "startBlock":   0,
+    "endBlock":     "latest",
+    "quiet":        true,
+    "syncAll":      true,
+    "patch":        false,
+    "patchBlocks":  0,
+    "settings": {
+        "symbol": "CHK",
+        "name": "chikochain",
+        "title": "Chikochain Network",
+        "author": "@Chiko Team"
+    }
+}
