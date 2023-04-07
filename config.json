@@ -12,6 +12,7 @@
         "symbol": "CHK",
         "name": "chikochain",
         "title": "Chikochain Network",
-        "author": "@Chiko Team"
+        "author": "@Chiko Team",
+        "logo": "/img/explorer-logo.png"
     }
 }
