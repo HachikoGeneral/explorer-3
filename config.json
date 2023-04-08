@@ -16,7 +16,7 @@
         "logo": "/img/explorer-logo.png", 
         "miners": {
             "0x1687736326c9fea17e25fc5287613693c912909c": "Node1",
-            "0x1687736326c9fea17e25fc5287613693c912909c": "Node2",
+            "0x15fdd31c61141abd04a99fd6822c8558854ccde3": "Node2",
 } 
     }
 }
