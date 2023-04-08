@@ -15,6 +15,7 @@
         "author": "@Chiko Team",
         "logo": "/img/explorer-logo.png", 
         "contact": "mailto:chikochainnetwork@gmail.com",
+        "twitter": "https://twitter.com/HACHIKO_BSC",   
         "tokenList": "tokens.json",
         "useRichList": true,
         "useFiat": true,
