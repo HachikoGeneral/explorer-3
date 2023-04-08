@@ -15,7 +15,7 @@
         "author": "@Chiko Team",
         "logo": "/img/explorer-logo.png", 
         "contact": "mailto:chikochainnetwork@gmail.com",
-        "about": "This is an open source Blockchain Explorer.",     
+        "about": "Chikochain network EVM explorer.",     
         "twitter": "https://twitter.com/HACHIKO_BSC",   
         "tokenList": "tokens.json",
         "useRichList": true,
